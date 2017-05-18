@@ -1,0 +1,18 @@
+<md-sidenav #sidenav class="main-menu">
+  <md-list>
+    <md-list-item>
+      <a href="/employee">Employee</a>
+    </md-list-item>
+    <md-list-item>
+      <button md-button (click)="logout()">Logout</button>
+    </md-list-item>
+    <md-list-item>Paprika</md-list-item>
+  </md-list>
+</md-sidenav>
+<md-toolbar color="primary">
+  <button md-icon-button (click)="sidenav.open()">
+    <md-icon>menu</md-icon>
+  </button>
+  <span>MSU</span>
+  <span class="fill-remaining-space"></span>
+</md-toolbar>

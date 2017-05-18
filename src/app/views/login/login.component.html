@@ -1,0 +1,14 @@
+<div class="login-container">
+  <md-card class="login-form">
+    <md-card-title>Login</md-card-title>
+    <md-input-container>
+      <input mdInput type="text" [(ngModel)]="user.email" placeholder="Email">
+    </md-input-container>
+
+    <md-input-container>
+      <input mdInput type="password" [(ngModel)]="password" placeholder="Password">
+    </md-input-container>
+
+    <button md-raised-button (click)="login()">Login</button>
+  </md-card>
+</div>

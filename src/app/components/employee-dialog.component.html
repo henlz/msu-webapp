@@ -1,0 +1,57 @@
+<h1 md-dialog-title>
+  {{title}}
+</h1>
+<div fxLayoutGap="30px" fxLayout="column">
+  <form name="employee" fxLayout="column" fxLayoutGap="10px">
+    <md-input-container>
+      <input mdInput
+             placeholder="Name"
+             required
+             #name="ngModel"
+             name="name"
+             [(ngModel)]="employee.name">
+    </md-input-container>
+
+    <div *ngIf="name.errors && (name.dirty || name.touched)">
+      <div [hidden]="!name.errors.required">Input name is required</div>
+    </div>
+
+    <md-input-container>
+      <input mdInput
+             placeholder="Birth Date"
+             required
+             type="date"
+             #name="ngModel"
+             name="birthDate"
+             [(ngModel)]="employee.birth_date">
+    </md-input-container>
+
+    <!--<div *ngIf="birthDate.errors && (birthDate.dirty || birthDate.touched)">-->
+    <!--<div [hidden]="!birthDate.errors.required">Input Birth Date is required</div>-->
+    <!--</div>-->
+
+    <md-select placeholder="Role"
+               required
+               id="role"
+               name="role"
+               #name="ngModel"
+               [(ngModel)]="employee.role"
+               ngDefaultControl>
+      <md-option value="driver">
+        Driver
+      </md-option>
+      <md-option value="helper">
+        Helper
+      </md-option>
+    </md-select>
+  </form>
+
+  <div fxLayout="row" fxFlexAlign="end center">
+    <button md-button md-dialog-close>
+      Cancel
+    </button>
+    <button md-raised-button (click)="onSave()" color="primary">
+      Save
+    </button>
+  </div>
+</div>

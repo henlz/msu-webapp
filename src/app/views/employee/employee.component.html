@@ -1,0 +1,37 @@
+<md-toolbar>
+  <div fxLayout="row" fxFill fxLayoutAlign="space-between center">
+    <span>
+      Employees
+    </span>
+    <button md-icon-button (click)="openDialog()">
+      <md-icon>add</md-icon>
+    </button>
+  </div>
+</md-toolbar>
+
+<ng2-md-datatable>
+  <ng2-md-datatable-header>
+    <ng2-md-datatable-column sortValue="id">ID</ng2-md-datatable-column>
+    <ng2-md-datatable-column sortValue="name">Name</ng2-md-datatable-column>
+    <ng2-md-datatable-column sortValue="role">Role</ng2-md-datatable-column>
+    <ng2-md-datatable-column sortValue="role">Birth Date</ng2-md-datatable-column>
+    <ng2-md-datatable-column>Actions</ng2-md-datatable-column>
+  </ng2-md-datatable-header>
+  <tbody>
+  <ng2-md-datatable-row [selectableValue]="employee" *ngFor="let employee of employees">
+    <td>{{employee.id}}</td>
+    <td>{{employee.name}}</td>
+    <td class="capitalize-first">{{employee.role}}</td>
+    <td>{{employee.birth_date | date: 'MM/dd/yyyy'}}</td>
+
+    <td>
+      <button md-icon-button (click)="editEmployee($event, employee)">
+        <md-icon>edit</md-icon>
+      </button>
+      <button md-icon-button (click)="deleteEmployee($event, employee)">
+        <md-icon>delete</md-icon>
+      </button>
+    </td>
+  </ng2-md-datatable-row>
+  </tbody>
+</ng2-md-datatable>
