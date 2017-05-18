@@ -6,35 +6,37 @@ import { Employee } from '../models/employee.model';
 
 @Injectable()
 export class EmployeeService {
+  apiUrl = 'https://msu-api-zago.herokuapp.com/';
+
   constructor(private http: Http) {
   }
 
   getAll(page = 1): Observable<Employee[]> {
-    return this.http.get('http://localhost:3000/employees?page=' + page, this.jwt())
+    return this.http.get(this.apiUrl + 'employees?page=' + page, this.jwt())
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
   getById(id: number) {
-    return this.http.get('http://localhost:3000/employees/' + id, this.jwt())
+    return this.http.get(this.apiUrl + 'employees/' + id, this.jwt())
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
   create(employee: Employee) {
-    return this.http.post('http://localhost:3000/employees', employee, this.jwt())
+    return this.http.post(this.apiUrl + 'employees', employee, this.jwt())
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
   update(employee: Employee) {
-    return this.http.put('http://localhost:3000/employees/' + employee.id, employee, this.jwt())
+    return this.http.put(this.apiUrl + 'employees/' + employee.id, employee, this.jwt())
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }
 
   delete(id: number) {
-    return this.http.delete('http://localhost:3000/employees/' + id, this.jwt())
+    return this.http.delete(this.apiUrl + 'employees/' + id, this.jwt())
       .map((response: Response) => response.json())
       .catch(this.handleError);
   }

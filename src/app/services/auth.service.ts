@@ -4,11 +4,13 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class AuthenticationService {
+  apiUrl = 'https://msu-api-zago.herokuapp.com/';
+  
   constructor(private http: Http) {
   }
 
   login(email: string, password: string) {
-    return this.http.post('http://localhost:3000/authenticate', {email, password})
+    return this.http.post(this.apiUrl + 'authenticate', {email, password})
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
         const user = response.json();
