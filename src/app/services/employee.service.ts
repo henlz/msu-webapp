@@ -3,6 +3,7 @@ import { Headers, Http, RequestOptions, Response } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 import { Employee } from '../models/employee.model';
+import { Pagination } from '../models/pagination.model';
 
 @Injectable()
 export class EmployeeService {
@@ -11,7 +12,7 @@ export class EmployeeService {
   constructor(private http: Http) {
   }
 
-  getAll(page = 1): Observable<Employee[]> {
+  getAll(page = 1): Observable<Pagination<Employee>> {
     return this.http.get(this.apiUrl + 'employees?page=' + page, this.jwt())
       .map((response: Response) => response.json())
       .catch(this.handleError);

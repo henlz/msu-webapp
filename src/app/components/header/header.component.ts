@@ -10,6 +10,10 @@ import { AuthenticationService } from '../../services/auth.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  links = [
+    {label: 'Employee', ref: '/employee'}
+  ];
+
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);

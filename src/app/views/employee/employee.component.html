@@ -16,7 +16,7 @@
     <ng2-md-datatable-column>Actions</ng2-md-datatable-column>
   </ng2-md-datatable-header>
   <tbody>
-  <ng2-md-datatable-row [selectableValue]="employee" *ngFor="let employee of employees">
+  <ng2-md-datatable-row [selectableValue]="employee" *ngFor="let employee of pagination.objects">
     <td>{{employee.id}}</td>
     <td>{{employee.name}}</td>
     <td class="capitalize-first">{{employee.role}}</td>

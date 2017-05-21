@@ -1,13 +1,8 @@
-<md-sidenav #sidenav class="main-menu">
-  <md-list>
-    <md-list-item>
-      <a href="/employee">Employee</a>
-    </md-list-item>
-    <md-list-item>
-      <button md-button (click)="logout()">Logout</button>
-    </md-list-item>
-    <md-list-item>Paprika</md-list-item>
-  </md-list>
+<md-sidenav #sidenav class="main-menu" mode="side">
+  <md-nav-list>
+    <a md-list-item [href]="link.ref" *ngFor="let link of links"> {{ link.label }} </a>
+    <a md-list-item (click)="logout()">Logout</a>
+  </md-nav-list>
 </md-sidenav>
 <md-toolbar color="primary">
   <button md-icon-button (click)="sidenav.open()">

@@ -8,6 +8,7 @@ import { EmployeeDialogTemplateComponent } from '../../components/employee-dialo
 import { Employee } from '../../models/employee.model';
 import { AlertService } from '../../services/alert.service';
 import { EmployeeService } from '../../services/employee.service';
+import { Pagination } from '../../models/pagination.model';
 
 @Component({
   selector: 'app-employee',
@@ -15,7 +16,7 @@ import { EmployeeService } from '../../services/employee.service';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
-  employees = [];
+  pagination = new Pagination<Employee>();
 
   openDialog(employee) {
     const dialogRef: MdDialogRef<EmployeeDialogTemplateComponent> = this.dialog.open(EmployeeDialogTemplateComponent);
@@ -55,7 +56,7 @@ export class EmployeeComponent implements OnInit {
   loadEmployees(page = 1) {
     this.service.getAll(page)
       .subscribe(
-        data => this.employees = data
+        data => this.pagination = data
       );
   }
 
