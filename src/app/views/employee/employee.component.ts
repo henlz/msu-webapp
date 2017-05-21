@@ -25,7 +25,7 @@ export class EmployeeComponent implements OnInit {
       .subscribe(
         result => {
           if (result) {
-            this.saveEmployee(result);
+            this.onEmployeeSaved();
           }
         }
       );
@@ -40,36 +40,16 @@ export class EmployeeComponent implements OnInit {
 
   private editEmployee(event, employee: Employee) {
     this.openDialog(employee);
-    event.stopPropagation();
-    event.preventDefault();
   }
 
   private deleteEmployee(event, employee: Employee) {
     this.service.delete(employee.id)
       .subscribe(
         () => {
-          this.alertService.success(`Employee ${employee.name} deleted with sucess!`)
+          this.alertService.success(`Employee ${employee.name} deleted with sucess!`);
           this.loadEmployees();
         }
       );
-    event.stopPropagation();
-    event.preventDefault();
-  }
-
-  private saveEmployee(employee: Employee) {
-    if (!employee.id) {
-      this.service.create(employee)
-        .subscribe(
-          () => this.onEmployeeSaved(),
-          error => this.alertService.error('Error on saving employee.')
-        );
-    } else {
-      this.service.update(employee)
-        .subscribe(
-          () => this.onEmployeeSaved(),
-          error => this.alertService.error('Error on saving employee.')
-        );
-    }
   }
 
   loadEmployees(page = 1) {
