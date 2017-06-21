@@ -16,7 +16,7 @@ export class EmployeeService extends AbstractService<Employee> {
   }
 
   getEmployees(page = 1): Observable<PaginatedList> {
-    return this.getList(this.endpoint + '?' + page);
+    return this.getList(this.endpoint + '?page=' + page);
   }
 
   getEmployee(id: number): Observable<Employee> {

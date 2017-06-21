@@ -40,10 +40,9 @@ export class AbstractService<T> {
       .catch(this.handleError);
   }
 
-  // helper methods
+  // Helper methods
 
   protected jwt() {
-    // createEmployee authorization header with jwt token
     const currentUser = localStorage.getItem('currentUser');
     if (currentUser) {
       const token = JSON.parse(currentUser).auth_token;

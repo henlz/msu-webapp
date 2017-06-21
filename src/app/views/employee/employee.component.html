@@ -16,12 +16,11 @@
     <ng2-md-datatable-column>Actions</ng2-md-datatable-column>
   </ng2-md-datatable-header>
   <tbody>
-  <ng2-md-datatable-row [selectableValue]="employee" *ngFor="let employee of pagination.objects">
+  <ng2-md-datatable-row [selectableValue]="employee" *ngFor="let employee of paginatedList.objects">
     <td>{{employee.id}}</td>
     <td>{{employee.name}}</td>
     <td class="capitalize-first">{{employee.role}}</td>
     <td>{{employee.birth_date | date: 'MM/dd/yyyy'}}</td>
-
     <td>
       <button md-icon-button (click)="editEmployee($event, employee)">
         <md-icon>edit</md-icon>

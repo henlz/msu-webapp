@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MdDialog, MdDialogRef } from '@angular/material';
-
-import { Observable } from 'rx';
 import { EmployeeDialogTemplateComponent } from '../../components/employee-dialog.component';
 
 import { Employee } from '../../models/employee.model';
