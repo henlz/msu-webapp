@@ -1,16 +1,17 @@
-import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Response } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { AbstractService } from './abstract.service';
 
 @Injectable()
-export class AuthenticationService {
-  apiUrl = 'https://msu-api-zago.herokuapp.com/';
-  
-  constructor(private http: Http) {
+export class AuthenticationService extends AbstractService<{}> {
+  logout() {
+    // remove user from local storage to log user out
+    localStorage.removeItem('currentUser');
   }
 
   login(email: string, password: string) {
-    return this.http.post(this.apiUrl + 'authenticate', {email, password})
+    return this.post('authenticate', {email, password})
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
         const user = response.json();
@@ -19,10 +20,5 @@ export class AuthenticationService {
           localStorage.setItem('currentUser', JSON.stringify(user));
         }
       });
-  }
-
-  logout() {
-    // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
   }
 }
