@@ -1,5 +1,4 @@
-export class Pagination<T> {
-  objects: Array<T>;
+export class Pagination {
   current_page: number;
   next_page: number;
   prev_page: number;

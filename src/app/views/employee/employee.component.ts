@@ -6,9 +6,9 @@ import { Observable } from 'rx';
 import { EmployeeDialogTemplateComponent } from '../../components/employee-dialog.component';
 
 import { Employee } from '../../models/employee.model';
+import { PaginatedList } from '../../models/paginated-list.model';
 import { AlertService } from '../../services/alert.service';
 import { EmployeeService } from '../../services/employee.service';
-import { Pagination } from '../../models/pagination.model';
 
 @Component({
   selector: 'app-employee',
@@ -16,7 +16,7 @@ import { Pagination } from '../../models/pagination.model';
   styleUrls: ['./employee.component.css']
 })
 export class EmployeeComponent implements OnInit {
-  pagination = new Pagination<Employee>();
+  paginatedList = new PaginatedList();
 
   openDialog(employee) {
     const dialogRef: MdDialogRef<EmployeeDialogTemplateComponent> = this.dialog.open(EmployeeDialogTemplateComponent);
@@ -44,7 +44,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   private deleteEmployee(event, employee: Employee) {
-    this.service.delete(employee.id)
+    this.service.deleteEmployee(employee)
       .subscribe(
         () => {
           this.alertService.success(`Employee ${employee.name} deleted with sucess!`);
@@ -54,9 +54,9 @@ export class EmployeeComponent implements OnInit {
   }
 
   loadEmployees(page = 1) {
-    this.service.getAll(page)
+    this.service.getEmployees(page)
       .subscribe(
-        data => this.pagination = data
+        data => this.paginatedList = data
       );
   }
 

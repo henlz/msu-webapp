@@ -22,13 +22,13 @@ export class EmployeeDialogTemplateComponent implements OnInit {
 
   saveEmployee(employee: Employee) {
     if (!employee.id) {
-      this.service.create(employee)
+      this.service.createEmployee(employee)
         .subscribe(
           () => this.onEmployeeSaved(),
           this.handleError
         );
     } else {
-      this.service.update(employee)
+      this.service.updateEmployee(employee)
         .subscribe(
           () => this.onEmployeeSaved(),
           this.handleError
