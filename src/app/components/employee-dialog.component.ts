@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 
 import { MdDialogRef } from '@angular/material';
 import { Employee } from '../models/employee.model';
-
-import { AlertService } from '../services/alert.service';
+import { Location } from '../models/location.model';
 import { EmployeeService } from '../services/employee.service';
+import { LocationService } from '../services/location.service';
 
 @Component({
   selector: 'app-employee-dialog',
@@ -13,10 +13,10 @@ import { EmployeeService } from '../services/employee.service';
 export class EmployeeDialogTemplateComponent implements OnInit {
   title: string;
   employee: Employee;
+  locations: Array<Location>;
   errors: any;
 
   onEmployeeSaved() {
-    console.log('saved');
     this.dialogRef.close(this.employee);
   }
 
@@ -36,8 +36,14 @@ export class EmployeeDialogTemplateComponent implements OnInit {
     }
   }
 
+  fetchEmployee(employee: Employee) {
+    this.service.getEmployee(employee.id)
+      .subscribe(
+        data => this.employee = data
+      );
+  }
+
   handleError(errors: any) {
-    console.log('error', errors);
     this.errors = errors;
   }
 
@@ -47,11 +53,17 @@ export class EmployeeDialogTemplateComponent implements OnInit {
       this.employee = new Employee();
     } else {
       this.title = 'Edit Employee';
+      this.fetchEmployee(this.employee);
     }
+
+    this.locationService.getLocations()
+      .subscribe(
+        data => this.locations = data
+      );
   }
 
   constructor(public dialogRef: MdDialogRef<EmployeeDialogTemplateComponent>,
-              public alertService: AlertService,
+              public locationService: LocationService,
               private service: EmployeeService) {
     this.errors = {};
   }

@@ -9,6 +9,7 @@ export class Employee {
   day_start_work: Date;
   role: EmployeeRole;
   birth_date: Date;
+  location_id: number;
 
   constructor(employee?: Employee) {
     if (employee) {
@@ -19,6 +20,7 @@ export class Employee {
       this.ssn = employee.ssn;
       this.address = employee.address;
       this.day_start_work = employee.day_start_work;
+      this.location_id = employee.location_id;
     }
   }
 }
