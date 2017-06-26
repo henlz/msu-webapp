@@ -1,0 +1,30 @@
+<md-toolbar>
+  <div fxLayout="row" fxFill fxLayoutAlign="space-between center">
+    <span>Worked days</span>
+    <button md-raised-button md-icon-button color="primary">
+      <md-icon>add</md-icon>
+    </button>
+  </div>
+</md-toolbar>
+
+<ng2-md-datatable>
+  <ng2-md-datatable-header>
+    <ng2-md-datatable-column sortValue="employee">Employee</ng2-md-datatable-column>
+    <ng2-md-datatable-column sortValue="week_number">Week number</ng2-md-datatable-column>
+    <ng2-md-datatable-column sortValue="days">Days</ng2-md-datatable-column>
+    <ng2-md-datatable-column>Actions</ng2-md-datatable-column>
+  </ng2-md-datatable-header>
+
+  <tbody>
+  <ng2-md-datatable-row *ngFor="let workedDay of paginatedList.objects">
+    <td>{{workedDay.employee_name}}</td>
+    <td>{{workedDay.week_number}}</td>
+    <td>{{workedDay.days.toString()}}</td>
+    <td>
+      <button md-icon-button (click)="deleteEmployee($event, workedDay)">
+        <md-icon>delete</md-icon>
+      </button>
+    </td>
+  </ng2-md-datatable-row>
+  </tbody>
+</ng2-md-datatable>
