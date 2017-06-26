@@ -3,84 +3,143 @@
 </h1>
 <div fxLayoutGap="30px" fxLayout="column">
   <form name="employee" fxLayout="column" fxLayoutGap="10px">
-    <md-input-container>
-      <input mdInput
-             placeholder="Name"
-             required
-             (error)="errors.name"
-             #name="ngModel"
-             name="name"
-             [(ngModel)]="employee.name">
-    </md-input-container>
+    <div fxLayout="row" fxLayoutAlign="space-between center">
+      <div>
+        <md-input-container>
+          <input mdInput
+                 placeholder="Name"
+                 required
+                 (error)="errors.name"
+                 #name="ngModel"
+                 name="name"
+                 [(ngModel)]="employee.name">
+        </md-input-container>
 
-    <div *ngIf="errors.name">
-      <div *ngFor="let error of errors.name">{{error}}</div>
+        <div *ngIf="errors.name">
+          <div *ngFor="let error of errors.name">{{error}}</div>
+        </div>
+      </div>
+
+      <div>
+        <md-input-container>
+          <input mdInput
+                 placeholder="Social Security Number"
+                 required
+                 (error)="errors.ssn"
+                 type="number"
+                 #name="ngModel"
+                 name="ssn"
+                 [(ngModel)]="employee.ssn">
+        </md-input-container>
+
+        <div *ngIf="errors.ssn">
+          <div *ngFor="let error of errors.ssn">*{{error}}</div>
+        </div>
+      </div>
+
+      <div>
+        <md-input-container>
+          <input mdInput
+                 placeholder="Driver License"
+                 #name="ngModel"
+                 name="driver_license"
+                 [(ngModel)]="employee.driver_license">
+        </md-input-container>
+
+        <div *ngIf="errors.driver_license">
+          <div *ngFor="let error of errors.driver_license">*{{error}}</div>
+        </div>
+      </div>
     </div>
 
-    <md-input-container>
-      <input mdInput
-             placeholder="Social Security Number"
-             required
-             (error)="errors.ssn"
-             type="number"
-             #name="ngModel"
-             name="ssn"
-             [(ngModel)]="employee.ssn">
-    </md-input-container>
+    <div fxLayoutAlign="space-between end" fxLayout="row">
+      <div>
+        <md-input-container>
+          <input mdInput
+                 placeholder="Address"
+                 #name="ngModel"
+                 name="address"
+                 [(ngModel)]="employee.address">
+        </md-input-container>
 
-    <div *ngIf="errors.ssn">
-      <div *ngFor="let error of errors.ssn">*{{error}}</div>
+        <div *ngIf="errors.address">
+          <div *ngFor="let error of errors.address">*{{error}}</div>
+        </div>
+      </div>
+
+      <div>
+        <md-input-container>
+          <input mdInput
+                 placeholder="Birth Date"
+                 required
+                 (error)="errors.birth_date"
+                 type="date"
+                 #name="ngModel"
+                 name="birthDate"
+                 [(ngModel)]="employee.birth_date">
+        </md-input-container>
+
+        <div *ngIf="errors.birth_date">
+          <div *ngFor="let error of errors.birth_date">*{{error}}</div>
+        </div>
+      </div>
+
+      <div>
+        <md-input-container>
+          <input mdInput
+                 placeholder="Day Start"
+                 type="date"
+                 #name="ngModel"
+                 name="day_start_work"
+                 [(ngModel)]="employee.day_start_work">
+        </md-input-container>
+
+        <div *ngIf="errors.day_start_work">
+          <div *ngFor="let error of errors.day_start_work">*{{error}}</div>
+        </div>
+      </div>
+
     </div>
 
-    <md-input-container>
-      <input mdInput
-             placeholder="Driver License"
-             #name="ngModel"
-             name="driver_license"
-             [(ngModel)]="employee.driver_license">
-    </md-input-container>
+    <div fxLayoutAlign="start space-between" fxLayout="row">
+      <div>
+        <md-select placeholder="Role"
+                   required
+                   id="role"
+                   name="role"
+                   #name="ngModel"
+                   [(ngModel)]="employee.role"
+                   ngDefaultControl>
+          <md-option value="driver">
+            Driver
+          </md-option>
+          <md-option value="helper">
+            Helper
+          </md-option>
+        </md-select>
 
-    <md-input-container>
-      <input mdInput
-             placeholder="Birth Date"
-             required
-             (error)="errors.birth_date"
-             type="date"
-             #name="ngModel"
-             name="birthDate"
-             [(ngModel)]="employee.birth_date">
-    </md-input-container>
+        <div *ngIf="errors.role">
+          <div *ngFor="let error of errors.role">*{{error}}</div>
+        </div>
+      </div>
 
-    <div *ngIf="errors.birth_date">
-      <div *ngFor="let error of errors.birth_date">*{{error}}</div>
-    </div>
+      <div>
+        <md-select placeholder="Location"
+                   required
+                   id="location"
+                   name="location"
+                   #name="ngModel"
+                   [(ngModel)]="employee.location_id"
+                   ngDefaultControl>
+          <md-option [value]="location.id" *ngFor="let location of locations">
+            {{location.name}}
+          </md-option>
+        </md-select>
 
-    <md-input-container>
-      <input mdInput
-             placeholder="Day Start"
-             type="date"
-             #name="ngModel"
-             name="day_start_work"
-             [(ngModel)]="employee.day_start_work">
-    </md-input-container>
-
-    <md-select placeholder="Role"
-               required
-               id="role"
-               name="role"
-               #name="ngModel"
-               [(ngModel)]="employee.role"
-               ngDefaultControl>
-      <md-option value="driver">
-        Driver
-      </md-option>
-      <md-option value="helper">
-        Helper
-      </md-option>
-    </md-select>
-
-    <div *ngIf="errors.role">
-      <div *ngFor="let error of errors.role">*{{error}}</div>
+        <div *ngIf="errors.location_id">
+          <div *ngFor="let error of errors.location_id">*{{error}}</div>
+        </div>
+      </div>
     </div>
   </form>
 
