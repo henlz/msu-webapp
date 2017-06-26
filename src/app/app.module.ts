@@ -27,6 +27,7 @@ import { AlertService } from './services/alert.service';
 import { AuthGuard } from './services/auth.guard';
 import { AuthenticationService } from './services/auth.service';
 import { EmployeeService } from './services/employee.service';
+import { LocationService } from './services/location.service';
 import { EmployeeComponent } from './views/employee/employee.component';
 import { LoginComponent } from './views/login/login.component';
 
@@ -64,6 +65,7 @@ const materialImports = [
   providers: [
     AlertService,
     EmployeeService,
+    LocationService,
     AuthenticationService,
     AuthGuard
   ],
