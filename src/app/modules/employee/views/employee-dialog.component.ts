@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MdDialogRef } from '@angular/material';
-import { Employee } from '../modules/employee/models/employee.model';
-import { Location } from '../modules/employee/models/location.model';
-import { EmployeeService } from '../modules/employee/services/employee.service';
-import { LocationService } from '../modules/employee/services/location.service';
+import { Employee } from '../models/employee.model';
+import { Location } from '../models/location.model';
+import { EmployeeService } from '../services/employee.service';
+import { LocationService } from '../services/location.service';
 
 @Component({
   selector: 'app-employee-dialog',
