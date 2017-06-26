@@ -1,8 +1,8 @@
 import { RouterModule, Routes } from '@angular/router';
 
-import { AuthGuard } from './services/auth.guard';
-import { EmployeeComponent } from './views/employee/employee.component';
-import { LoginComponent } from './views/login/login.component';
+import { AuthGuard } from './modules/login/services/auth.guard';
+import { EmployeeComponent } from './modules/employee/views/employee.component';
+import { LoginComponent } from './modules/login/views/login.component';
 import { HeaderComponent } from './components/header/header.component';
 
 const appRoutes: Routes = [

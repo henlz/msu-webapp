@@ -24,12 +24,13 @@ import { routing } from './app.routing';
 import { EmployeeDialogTemplateComponent } from './components/employee-dialog.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AlertService } from './services/alert.service';
-import { AuthGuard } from './services/auth.guard';
-import { AuthenticationService } from './services/auth.service';
-import { EmployeeService } from './services/employee.service';
-import { LocationService } from './services/location.service';
-import { EmployeeComponent } from './views/employee/employee.component';
-import { LoginComponent } from './views/login/login.component';
+import { AuthGuard } from './modules/login/services/auth.guard';
+import { AuthenticationService } from './modules/login/services/auth.service';
+import { EmployeeService } from './modules/employee/services/employee.service';
+import { LocationService } from './modules/employee/services/location.service';
+import { EmployeeComponent } from './modules/employee/views/employee.component';
+import { LoginComponent } from './modules/login/views/login.component';
+import { WorkedDaysComponent } from './modules/worked-days/views/worked-days.component';
 
 const materialImports = [
   BrowserAnimationsModule,
@@ -51,7 +52,8 @@ const materialImports = [
     EmployeeDialogTemplateComponent,
     LoginComponent,
     EmployeeComponent,
-    HeaderComponent
+    HeaderComponent,
+    WorkedDaysComponent
   ],
   imports: [
     BrowserModule,

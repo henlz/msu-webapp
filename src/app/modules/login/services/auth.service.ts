@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
-import { AbstractService } from './abstract.service';
+import { AbstractService } from '../../../services/abstract.service';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 

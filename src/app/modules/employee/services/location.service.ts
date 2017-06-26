@@ -5,7 +5,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { Employee } from '../models/employee.model';
 import { Location } from '../models/location.model';
-import { AbstractService } from './abstract.service';
+import { AbstractService } from '../../../services/abstract.service';
 
 @Injectable()
 export class LocationService extends AbstractService<Employee> {

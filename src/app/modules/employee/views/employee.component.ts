@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MdDialog, MdDialogRef } from '@angular/material';
-import { EmployeeDialogTemplateComponent } from '../../components/employee-dialog.component';
+import { EmployeeDialogTemplateComponent } from '../../../components/employee-dialog.component';
 
-import { Employee } from '../../models/employee.model';
-import { PaginatedList } from '../../models/paginated-list.model';
-import { AlertService } from '../../services/alert.service';
-import { EmployeeService } from '../../services/employee.service';
+import { Employee } from '../models/employee.model';
+import { PaginatedList } from '../../../models/paginated-list.model';
+import { AlertService } from '../../../services/alert.service';
+import { EmployeeService } from '../services/employee.service';
 
 @Component({
   selector: 'app-employee',

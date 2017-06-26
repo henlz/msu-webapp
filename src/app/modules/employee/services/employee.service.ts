@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { Employee } from '../models/employee.model';
-import { PaginatedList } from '../models/paginated-list.model';
-import { AbstractService } from './abstract.service';
+import { PaginatedList } from '../../../models/paginated-list.model';
+import { AbstractService } from '../../../services/abstract.service';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 
