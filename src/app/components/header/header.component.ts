@@ -11,7 +11,8 @@ import { AuthenticationService } from '../../modules/login/services/auth.service
 })
 export class HeaderComponent {
   links = [
-    {label: 'Employee', ref: '/employee'}
+    {label: 'Employee', ref: '/employee'},
+    {label: 'Worked Days', ref: '/worked-days'}
   ];
 
   logout() {

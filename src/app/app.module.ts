@@ -20,17 +20,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MdDataTableModule } from 'ng2-md-datatable';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
-
-import { EmployeeDialogTemplateComponent } from './components/employee-dialog.component';
 import { HeaderComponent } from './components/header/header.component';
-import { AlertService } from './services/alert.service';
-import { AuthGuard } from './modules/login/services/auth.guard';
-import { AuthenticationService } from './modules/login/services/auth.service';
 import { EmployeeService } from './modules/employee/services/employee.service';
 import { LocationService } from './modules/employee/services/location.service';
+
+import { EmployeeDialogTemplateComponent } from './modules/employee/views/employee-dialog.component';
 import { EmployeeComponent } from './modules/employee/views/employee.component';
+import { AuthGuard } from './modules/login/services/auth.guard';
+import { AuthenticationService } from './modules/login/services/auth.service';
 import { LoginComponent } from './modules/login/views/login.component';
+import { WorkedDaysService } from './modules/worked-days/services/worked-days.service';
 import { WorkedDaysComponent } from './modules/worked-days/views/worked-days.component';
+import { AlertService } from './services/alert.service';
 
 const materialImports = [
   BrowserAnimationsModule,
@@ -67,6 +68,7 @@ const materialImports = [
   providers: [
     AlertService,
     EmployeeService,
+    WorkedDaysService,
     LocationService,
     AuthenticationService,
     AuthGuard
