@@ -5,13 +5,14 @@ import { Employee } from '../models/employee.model';
 import { PaginatedList } from '../models/paginated-list.model';
 import { AbstractService } from './abstract.service';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class EmployeeService extends AbstractService<Employee> {
   private endpoint: string;
 
-  constructor(protected http: Http) {
-    super(http);
+  constructor(protected http: Http, protected _router: Router) {
+    super(http, _router);
     this.endpoint = 'employees/';
   }
 

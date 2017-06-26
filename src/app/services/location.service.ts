@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { Employee } from '../models/employee.model';
@@ -10,8 +11,8 @@ import { AbstractService } from './abstract.service';
 export class LocationService extends AbstractService<Employee> {
   private endpoint: string;
 
-  constructor(protected http: Http) {
-    super(http);
+  constructor(protected http: Http, protected _router: Router) {
+    super(http, _router);
     this.endpoint = 'locations/';
   }
 
