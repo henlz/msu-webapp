@@ -1,6 +1,6 @@
-import { Pagination } from './pagination.model';
-
 export class PaginatedList {
-  objects: Array<{}>;
-  pagination: Pagination;
+  results: Array<{}>;
+  count: number;
+  next: number;
+  previous: number;
 }

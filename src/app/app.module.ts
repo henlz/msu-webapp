@@ -5,33 +5,36 @@ import { HttpModule } from '@angular/http';
 import {
   MdButtonModule,
   MdCardModule,
+  MdCheckboxModule,
   MdDialogModule,
   MdIconModule,
   MdInputModule,
   MdListModule,
+  MdPaginatorModule,
   MdSelectModule,
   MdSidenavModule,
   MdSnackBarModule,
+  MdTableModule,
   MdToolbarModule
 } from '@angular/material';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MdDataTableModule } from 'ng2-md-datatable';
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
+import { WeekDaysComponent } from './components/form/week-days/week-days.component';
 import { HeaderComponent } from './components/header/header.component';
-import { EmployeeService } from './modules/employee/services/employee.service';
-import { LocationService } from './modules/employee/services/location.service';
+import { EmployeeModule } from './employee/employee.module';
 
-import { EmployeeDialogTemplateComponent } from './modules/employee/views/employee-dialog.component';
-import { EmployeeComponent } from './modules/employee/views/employee.component';
+import { EmployeeDialogTemplateComponent } from './employee/views/employee-dialog.component';
+import { EmployeeComponent } from './employee/views/employee.component';
 import { AuthGuard } from './modules/login/services/auth.guard';
 import { AuthenticationService } from './modules/login/services/auth.service';
 import { LoginComponent } from './modules/login/views/login.component';
-import { WorkedDaysService } from './modules/worked-days/services/worked-days.service';
-import { WorkedDaysComponent } from './modules/worked-days/views/worked-days.component';
 import { AlertService } from './services/alert.service';
+import { WorkedDaysService } from './worked-days/services/worked-days.service';
+import { WorkedDaysFormComponent } from './worked-days/views/form/worked-days-form.component';
+import { WorkedDaysComponent } from './worked-days/views/list/worked-days.component';
 
 const materialImports = [
   BrowserAnimationsModule,
@@ -44,7 +47,10 @@ const materialImports = [
   MdSelectModule,
   MdSidenavModule,
   MdCardModule,
-  MdSnackBarModule
+  MdSnackBarModule,
+  MdTableModule,
+  MdPaginatorModule,
+  MdCheckboxModule
 ];
 
 @NgModule({
@@ -54,27 +60,29 @@ const materialImports = [
     LoginComponent,
     EmployeeComponent,
     HeaderComponent,
-    WorkedDaysComponent
+    WorkedDaysComponent,
+    WorkedDaysFormComponent,
+    WeekDaysComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     ...materialImports,
-    MdDataTableModule,
+    MdTableModule,
     FlexLayoutModule,
-    routing
+    routing,
+    EmployeeModule
   ],
   providers: [
     AlertService,
-    EmployeeService,
     WorkedDaysService,
-    LocationService,
     AuthenticationService,
     AuthGuard
   ],
   entryComponents: [
-    EmployeeDialogTemplateComponent
+    EmployeeDialogTemplateComponent,
+    WeekDaysComponent
   ],
   bootstrap: [AppComponent]
 })

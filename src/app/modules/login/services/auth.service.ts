@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Http, URLSearchParams } from '@angular/http';
+import { Router } from '@angular/router';
 import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { AbstractService } from '../../../services/abstract.service';
-import { Http } from '@angular/http';
-import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthenticationService extends AbstractService<{}> {
@@ -11,23 +11,20 @@ export class AuthenticationService extends AbstractService<{}> {
     super(http, _router);
   }
 
-  logout() {
+  logout(): boolean {
     // remove user from local storage to log user out
-    localStorage.removeItem('currentUser');
+    // localStorage.removeItem('currentUser');
+    return true;
   }
 
-  login(email: string, password: string) {
-    return this.post('authenticate', {email, password})
-      .map(response => {
-        const user = response;
+  login(username: string, password: string) {
+    const body = new URLSearchParams();
+    body.set('username', username);
+    body.set('password', password);
 
-        if (user && user.auth_token) {
-          localStorage.setItem('currentUser', JSON.stringify(user));
-        }
-      })
+    return this.post('login/', body)
       .catch((error: Response | any) => {
-        this.logout();
-        return Observable.throw(error.json());
+        return Observable.throw(error);
       });
   }
 }

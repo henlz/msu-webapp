@@ -1,0 +1,62 @@
+<ng-container>
+  <app-week-days [days]="workedDay.days"></app-week-days>
+
+  <md-select placeholder="Employee"
+             required
+             #name="ngModel"
+             [(ngModel)]="workedDay.employee_id"
+             ngDefaultControl>
+    <md-option [value]="employee.id" *ngFor="let employee of employees">
+      {{employee.name}}
+    </md-option>
+  </md-select>
+
+  <md-input-container>
+    <input mdInput
+           placeholder="Salary"
+           #name="ngModel"
+           type="number"
+           min="0"
+           [(ngModel)]="workedDay.salary">
+  </md-input-container>
+
+  <md-input-container>
+    <input mdInput
+           placeholder="Week number"
+           #name="ngModel"
+           type="number"
+           required
+           min="0"
+           [(ngModel)]="workedDay.week_number">
+  </md-input-container>
+
+  <md-input-container>
+    <input mdInput
+           placeholder="Extra"
+           #name="ngModel"
+           type="number"
+           min="0"
+           [(ngModel)]="workedDay.extra">
+  </md-input-container>
+
+  <md-input-container>
+    <input mdInput
+           placeholder="Deductions"
+           #name="ngModel"
+           type="number"
+           min="0"
+           [(ngModel)]="workedDay.deductions">
+  </md-input-container>
+
+  <md-input-container>
+    <textarea mdInput
+              placeholder="Observations"
+              [(ngModel)]="workedDay.observations">
+    </textarea>
+  </md-input-container>
+</ng-container>
+
+<ng-container>
+  <button md-raised-button (click)="saveWorkedDays()">Save</button>
+  <button md-button>Cancel</button>
+</ng-container>

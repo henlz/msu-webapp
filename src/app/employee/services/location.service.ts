@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { AbstractService } from '../../services/abstract.service';
 
 import { Employee } from '../models/employee.model';
 import { Location } from '../models/location.model';
-import { AbstractService } from '../../../services/abstract.service';
 
 @Injectable()
 export class LocationService extends AbstractService<Employee> {

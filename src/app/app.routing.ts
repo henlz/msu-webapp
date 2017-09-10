@@ -1,22 +1,31 @@
 import { RouterModule, Routes } from '@angular/router';
-
-import { AuthGuard } from './modules/login/services/auth.guard';
-import { EmployeeComponent } from './modules/employee/views/employee.component';
-import { WorkedDaysComponent } from './modules/worked-days/views/worked-days.component';
-import { LoginComponent } from './modules/login/views/login.component';
 import { HeaderComponent } from './components/header/header.component';
+import { EmployeeComponent } from './employee/views/employee.component';
+import { LoginComponent } from './modules/login/views/login.component';
+import { WorkedDaysFormComponent } from './worked-days/views/form/worked-days-form.component';
+import { WorkedDaysComponent } from './worked-days/views/list/worked-days.component';
 
 const appRoutes: Routes = [
-  {path: 'login', children: [
+  {
+    path: 'login', children: [
     {path: '', component: LoginComponent}
-  ]},
+  ]
+  },
 
   // Main routes
-  { path: '', canActivate: [AuthGuard], children: [
+  {
+    path: '', children: [
     {path: 'employee', component: EmployeeComponent},
-    {path: 'worked-days', component: WorkedDaysComponent},
+    {
+      path: 'worked-days', children: [
+      {path: '', component: WorkedDaysComponent},
+      {path: 'form', component: WorkedDaysFormComponent},
+      {path: 'form/:id', component: WorkedDaysFormComponent}
+    ]
+    },
     {path: '', component: HeaderComponent, outlet: 'header'}
-  ]},
+  ]
+  },
 
   // otherwise redirect to home
   {path: '**', redirectTo: 'employee'},
