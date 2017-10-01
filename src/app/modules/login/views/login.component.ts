@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   returnUrl: string;
 
   login() {
-    this.service.login(this.user.email, this.password)
+    this.service.login(this.user.username, this.password)
       .subscribe(
         data => this.router.navigate([this.returnUrl || 'employee']),
         error => this.alertService.error('Login failed')
