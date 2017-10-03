@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { PaginatedList } from '../../models/paginated-list.model';
-import { AbstractService } from '../../services/abstract.service';
-import { WorkedDay } from '../models/worked-day';
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {PaginatedList} from '../../models/paginated-list.model';
+import {AbstractService} from '../../services/abstract.service';
+import {WorkedDay} from '../models/worked-day.model';
 
 @Injectable()
 export class WorkedDaysService extends AbstractService<WorkedDay> {
@@ -21,6 +21,10 @@ export class WorkedDaysService extends AbstractService<WorkedDay> {
 
   getWorkedDays(page = 1): Observable<PaginatedList> {
     return this.getList(this.endpoint + '?page=' + page);
+  }
+
+  getWorkedDaysByWeek(week_number = 1): Observable<PaginatedList> {
+    return this.getList(this.endpoint + '?week_number=' + week_number);
   }
 
   getDetail(id) {

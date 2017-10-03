@@ -1,10 +1,10 @@
-import { DataSource } from '@angular/cdk/collections';
-import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
-import { MdPaginator } from '@angular/material';
-import { Router } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
-import { WorkedDay } from '../../models/worked-day';
-import { WorkedDaysService } from '../../services/worked-days.service';
+import {DataSource} from '@angular/cdk/collections';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
+import {MdPaginator} from '@angular/material';
+import {Router} from '@angular/router';
+import {Observable} from 'rxjs/Observable';
+import {WorkedDaysService} from '../../services/worked-days.service';
+import {WorkedDay} from '../../models/worked-day.model';
 
 @Component({
   selector: 'app-worked-days',

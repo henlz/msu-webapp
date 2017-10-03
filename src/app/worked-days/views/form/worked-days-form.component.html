@@ -1,62 +1,88 @@
-<ng-container>
-  <app-week-days [days]="workedDay.days"></app-week-days>
+<md-toolbar>
+  <div fxLayout="row" fxFill fxLayoutAlign="space-between center">
+    <span>Worked days</span>
+    <button md-raised-button
+            [disabled]="workWeeksToUpdate.length == 0"
+            md-icon-button
+            color="primary"
+            (click)="redirectToForm()">
+      <md-icon>save</md-icon>
+    </button>
+  </div>
+</md-toolbar>
 
-  <md-select placeholder="Employee"
-             required
-             #name="ngModel"
-             [(ngModel)]="workedDay.employee_id"
-             ngDefaultControl>
-    <md-option [value]="employee.id" *ngFor="let employee of employees">
-      {{employee.name}}
-    </md-option>
-  </md-select>
+<md-input-container>
+  <input mdInput #filter
+         placeholder="Week"
+         id="current_week"
+         value="1"
+         (onChange)="changeCurrentWeek()"
+         type="number"/>
+</md-input-container>
 
-  <md-input-container>
-    <input mdInput
-           placeholder="Salary"
-           #name="ngModel"
-           type="number"
-           min="0"
-           [(ngModel)]="workedDay.salary">
-  </md-input-container>
-
-  <md-input-container>
-    <input mdInput
-           placeholder="Week number"
-           #name="ngModel"
-           type="number"
-           required
-           min="0"
-           [(ngModel)]="workedDay.week_number">
-  </md-input-container>
-
-  <md-input-container>
-    <input mdInput
-           placeholder="Extra"
-           #name="ngModel"
-           type="number"
-           min="0"
-           [(ngModel)]="workedDay.extra">
-  </md-input-container>
-
-  <md-input-container>
-    <input mdInput
-           placeholder="Deductions"
-           #name="ngModel"
-           type="number"
-           min="0"
-           [(ngModel)]="workedDay.deductions">
-  </md-input-container>
-
-  <md-input-container>
-    <textarea mdInput
-              placeholder="Observations"
-              [(ngModel)]="workedDay.observations">
-    </textarea>
-  </md-input-container>
-</ng-container>
+<button md-button (click)="changeCurrentWeek()">change</button>
 
 <ng-container>
-  <button md-raised-button (click)="saveWorkedDays()">Save</button>
-  <button md-button>Cancel</button>
+  <md-table #table [dataSource]="dataSource" [trackBy]="id">
+    <ng-container mdColumnDef="employee">
+      <md-header-cell *mdHeaderCellDef>Employee</md-header-cell>
+      <md-cell *mdCellDef="let row"> {{row.employee_name}}</md-cell>
+    </ng-container>
+
+    <ng-container *ngFor="let day of weekDays" [mdColumnDef]="day">
+      <md-header-cell *mdHeaderCellDef class="capitalize-first">
+        {{day}}
+      </md-header-cell>
+      <md-cell *mdCellDef="let row">
+        <md-checkbox [checked]="isDayChecked(row, day)" (change)="onWeekDayCheck(day, row)"></md-checkbox>
+      </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="total_paid">
+      <md-header-cell *mdHeaderCellDef>Total paid</md-header-cell>
+      <md-cell *mdCellDef="let row"> {{row.total_paid}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="extra_costs">
+      <md-header-cell *mdHeaderCellDef>Extra</md-header-cell>
+      <md-cell *mdCellDef="let row">
+        <md-input-container style="max-width: 50px;">
+          <input mdInput
+                 [value]="row.extra_costs"
+                 (change)="onRowUpdate('numberField', row.id, $event, 'extra_costs')"
+                 type="number"/>
+        </md-input-container>
+      </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="total">
+      <md-header-cell *mdHeaderCellDef>Total</md-header-cell>
+      <md-cell *mdCellDef="let row"> {{row.total_paid + row.extra_costs}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="deductions">
+      <md-header-cell *mdHeaderCellDef>Deductions</md-header-cell>
+      <md-cell *mdCellDef="let row">
+        <md-input-container style="max-width: 50px;">
+          <input mdInput
+                 [value]="row.deductions"
+                 (change)="onRowUpdate('numberField', row.id, $event, 'deductions')"
+                 type="number"/>
+        </md-input-container>
+      </md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="final_check">
+      <md-header-cell *mdHeaderCellDef>Final check</md-header-cell>
+      <md-cell *mdCellDef="let row"> {{row.total_paid + row.extra_costs - row.deductions}}</md-cell>
+    </ng-container>
+
+    <ng-container mdColumnDef="salary">
+      <md-header-cell *mdHeaderCellDef>Salary</md-header-cell>
+      <md-cell *mdCellDef="let row"> {{row.salary}}</md-cell>
+    </ng-container>
+
+    <md-header-row *mdHeaderRowDef="displayedColumns"></md-header-row>
+    <md-row *mdRowDef="let row; columns: displayedColumns;"></md-row>
+  </md-table>
 </ng-container>
